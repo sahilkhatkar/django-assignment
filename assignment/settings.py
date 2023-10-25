@@ -13,6 +13,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+import environ
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -91,9 +97,9 @@ DATABASES = {
     # }
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "railway",
-        "USER": "root",
-        "PASSWORD": "ea2tmapivnf5ig1xn0zld9a9j2b-xn86",
+        "NAME": env('DATABASE_NAME'),
+        "USER": env('DATABASE_USER'),
+        "PASSWORD": env('DATABASE_PASS'),
         "HOST": "monorail.proxy.rlwy.net",
         "PORT": "40258",
     }
